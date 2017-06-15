@@ -197,8 +197,8 @@ bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 {
 	Node<T>* temp1;
 	Node<T>* temp2;
-	Node<T>* temp1;
-	Node<T>* temp1;
+	Node<T>* temp3;
+	Node<T>* temp4;
 	if (!current) return false;
 	if (current->_key == val)
 	{
