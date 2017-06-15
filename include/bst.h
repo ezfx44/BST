@@ -224,7 +224,7 @@ bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 			return delete_value(current, current->_right, temp);
 		}
 		delete current;
-		count--;
+		_count--;
 		return true;
 	}
 	if (current->_key > val)
