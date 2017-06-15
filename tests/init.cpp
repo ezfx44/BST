@@ -27,14 +27,14 @@ SCENARIO("get root", "[root]")
   test.insert_node(4);
   REQUIRE(test.root_() != 0);
 }
-SCENARIO ("reading/writing", "[init]")
+SCENARIO ("reading/writing", "[r/wr]")
 {
   BST<int> test1;
   test1.insert_node(1);
   test1.insert_node(2);
-  test1.writing("file1.txt");
+  test1.writing("file.txt");
   BST<int> test2;
-  test2.reading("file2.txt");
+  test2.reading("file.txt");
   REQUIRE(test2.find_node(1, test2.root_())!= nullptr);
   REQUIRE(test2.find_node(2, test2.root_())!= nullptr);
   REQUIRE(test1.get_count() == test2.get_count());
