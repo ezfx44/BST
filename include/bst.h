@@ -195,7 +195,10 @@ void BST<T>::out()const
 template<class T>
 bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 {
-	Node<T>* temp1, temp2, temp3, temp4;
+	Node<T>* temp1;
+	Node<T>* temp2;
+	Node<T>* temp1;
+	Node<T>* temp1;
 	if (!current) return false;
 	if (current->_key == val)
 	{
@@ -205,12 +208,14 @@ bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 			{
 				parent->_left = current->_right;
 				delete current;
+				_count--;
 				return true;
 			}
 			else 
 			{
 				parent->_right = current->_right;
 				delete current;
+				_count--;
 				return true;
 			}
 		}
@@ -220,12 +225,14 @@ bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 			{
 				parent->_left = current->_left;
 				delete current;
+				_count--;
 				return true;
 			}
 			else 
 			{
 				parent->_right = current->_left;
 				delete current;
+				_count--;
 				return true;
 			}
 		}
@@ -235,12 +242,14 @@ bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 			{
 				parent->_left = nullptr;
 				delete current;
+				_count--;
 				return true;
 			}
 			else 
 			{
 				parent->_right = nullptr;
 				delete current;
+				_count--;
 				return true;
 			}
 		}
