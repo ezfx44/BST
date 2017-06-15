@@ -42,13 +42,15 @@ SCENARIO ("reading/writing", "[r/wr]")
 SCENARIO("delete", "[del]")
 {
   BST<int> test;
-  test.insert_node(6);
-  test.insert_node(7);
   test.insert_node(8);
-  test.delete_val(6);
-  test.delete_val(8);
-  REQUIRE(test.find_node(8, test.root_())== nullptr);
-  REQUIRE(test.find_node(7, test.root_())== test.root_());
+  test.insert_node(3);
+  test.insert_node(1);
+  test.insert_node(2);
+  test.insert_node(6);
+  test.insert_node(4);
+  test.delete_val(3);
+  REQUIRE(test.find_node(3, test.root_())== nullptr);
+  REQUIRE(test.find_node(8, test.root_())== test.root_());
   REQUIRE(test.root_() != nullptr);
-  REQUIRE(test.get_count() == 1);
+  REQUIRE(test.get_count() == 5);
 }
