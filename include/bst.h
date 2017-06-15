@@ -195,34 +195,77 @@ void BST<T>::out()const
 template<class T>
 bool BST<T>::delete_value(Node<T>* parent, Node<T>* current,const T& val)
 {
+	Node<T>* temp1, temp2, temp3, temp4;
 	if (!current) return false;
 	if (current->_key == val)
 	{
-		if (current->_left == NULL || current->_right == NULL) {
-			Node<T>* temp = current->_left;
-			if (current->_right) temp = current->_right;
-			if (parent) {
-				if (parent->_left == current) {
-					parent->_left = temp;
-				}
-				else {
-					parent->_right = temp;
-				}
+		if (!current->_left && current->_right)
+		{
+			if (parent->_left == current) 
+			{
+				parent->_left = current->_right;
+				delete current;
+				return true;
 			}
-			else {
-				this->_root = temp;
+			else 
+			{
+				parent->_right = current->_right;
+				delete current;
+				return true;
 			}
 		}
-		else {
-			Node<T>* validSubs = current->_right;
-			while (validSubs->_left) {
-				validSubs = validSubs->_left;
+		else if (current->_left && !current->_right)
+		{
+			if (parent->_left == current) 
+			{
+				parent->_left = current->_left;
+				delete current;
+				return true;
 			}
-			T temp = current->_key;
-			current->_key = validSubs->_key;
-			validSubs->_key = temp;
-			return delete_value(current, current->_right, temp);
+			else 
+			{
+				parent->_right = current->_left;
+				delete current;
+				return true;
+			}
 		}
+		else if (!current->_left && !current->_right)
+		{
+			if (parent->_left == current) 
+			{
+				parent->_left = nullptr;
+				delete current;
+				return true;
+			}
+			else 
+			{
+				parent->_right = nullptr;
+				delete current;
+				return true;
+			}
+		}
+		else
+		{
+			temp2 = current->_right;
+			temp1 = temp2->_left;
+			temp3 = current->_left;
+			temp4 = current;
+			while(temp3->_right)
+			{
+				temp4 = temp3;
+				temp3 = temp4->_right;
+			}		
+		}
+		temp3->_right = temp1;
+		if (parent->_left == current) 
+		{
+			parent->_left = temp2;
+		}
+		else 
+		{
+			parent->_right = temp2;
+		}
+		temp2->_left = temp4;
 		delete current;
 		_count--;
 		return true;
